@@ -1,0 +1,11 @@
+{% for user in users %}
+    <form action="{% url 'set_presence' user.id %}" method="post">{% csrf_token %}
+        <h1>
+            {{ user.email }}
+            <input type="checkbox" name="present" value="{{ user.id }}"   {% if user.present %} checked="checked" {% endif %} />
+            <input type="text" class="vDateField" name="suspend_from" size="10" {% if user.suspend_from %} value="{{ user.suspend_from }}" {% endif %} />
+            <input type="text" class="vDateField" name="suspend_until" size="10" {% if user.suspend_until %} value="{{ user.suspend_until }}" {% endif %} />
+            <input type="submit" value="Set" />
+        </h1>
+    </form>
+{% endfor %}
