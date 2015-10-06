@@ -1,5 +1,6 @@
 #!/bin/bash
-pushd /data
+pushd /data/alessiobot
+export DJANGO_SETTINGS_MODULE=alessiobot.settings
 PALABRA=""
 TRANSLATE=""
 while [ "X$PALABRA" == X -o $TRANSLATE == $PALABRA ]; do
@@ -12,6 +13,7 @@ DAY=$(date +"%A")
 GIORNO=$(curl -s -i --user-agent "" -d "sl=es" -d "tl=it" --data-urlencode "text=$DAY" https://translate.google.com | iconv -f ISO-8859-1 |  awk 'BEGIN {RS="</div>"};/<span[^>]* id=["'\'']?result_box["'\'']?/' | html2text -utf8)
 echo -e "subject: Pranzo "$GIORNO" "`date +"%d/%m/%Y"` >> mail_template
 echo -e "from: organizzatoribot@gmail.com" >> mail_template
+python getemails.py >> mail_template
 echo -e "Hola chicos! Chi si presenta oggi?" >> mail_template
 echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template

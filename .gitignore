@@ -2,3 +2,5 @@
 db.sqlite3
 nohup.out
 webalessio/migrations/
+mail_template
+tmp
