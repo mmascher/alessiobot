@@ -1,5 +1,5 @@
 #Alessiobot
-Alessiobot is the best possible emulator of Alessio. It sends out emails in the morning for organizing for lunch and provides a web interface to set up holidays and the dayly RSVP.
+Alessiobot is the best possible emulator of Alessio. It sends out emails in the morning for organizing for lunch and provides a web interface to set up holidays and the daily RSVP.
 
 The assumption is that the basedir is /data/alessiobot
 
@@ -9,22 +9,26 @@ webalessio/models.py            #The database model
 webalessio/urls.py              #Mapping for the urls.
 webalessio/templates/webalessio/daylist.html    #The template for the main form
 
-You might want to google "django tutorial
+You might want to google "django tutorial"
 
 #Crontab to run the sendmail script
-37 6 * * 1-5 degano sh -ex /data/alessiobot/mailsender.sh
+`37 6 * * 1-5 degano sh -ex /data/alessiobot/mailsender.sh`
 
 #Some commands for updating the db and running the server:
+```python
 python manage.py runserver 0.0.0.0:8000
 python manage.py makemigrations webalessio
 python manage.py sqlmigrate webalessio 0001
 python manage.py migrate webalessio
+```
 
 #How to populate the db:
+```python
 from webalessio.models import User
 users = ['user1@gmail.com', 'user2@gmail.com']
-for user\_email in users:
+for user_email in users:
     u = User(email=user_email)
     u.save()
 #and this is to clean it:
 map(User.delete, User.objects.all())
+```
