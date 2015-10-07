@@ -28,7 +28,7 @@ python getemails.py >> mail_template
 echo -e "Hola chicos! Chi si presenta oggi?" >> mail_template
 echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template
-echo -e "\n$FORT" >> mail_template
+echo -e "\nProverbio del giorno\n$FORT" >> mail_template
 echo -e "\nMessaggio editato da AlessioBot, l'emulatore più fedele di OrganizzaTori(tm)" >> mail_template
 
 cat mail_template | /usr/sbin/sendmail -t
