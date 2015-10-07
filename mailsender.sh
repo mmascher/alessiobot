@@ -11,8 +11,8 @@ while [ "X$PALABRA" == X -o $TRANSLATE == $PALABRA ]; do
 done
 
 #get the fortune
-FORT_LINES=51
-while [ $FORT_LINES -gt 50 ]
+FORT_LINES=31
+while [ $FORT_LINES -gt 30 ]
 do
     FORT=$(fortune)
     FORT_LINES=$(echo $FORT | wc -w)
