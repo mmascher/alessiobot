@@ -1,11 +1,31 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Datepicker - Default functionality</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+  <!--link rel="stylesheet" href="/resources/demos/style.css"-->
+  <script>
+  $(function() {
+    $( ".datepicker" ).datepicker({ dateFormat: 'yy-mm-dd' });
+  });
+  </script>
+</head>
+<body>
+
 {% for user in users %}
     <form action="{% url 'set_presence' user.id %}" method="post">{% csrf_token %}
         <h1>
             {{ user.email }}
             <input type="checkbox" name="present" value="{{ user.id }}"   {% if user.present %} checked="checked" {% endif %} />
-            <input type="text" class="vDateField" name="suspend_from" size="10" {% if user.suspend_from %} value="{{ user.suspend_from }}" {% endif %} />
-            <input type="text" class="vDateField" name="suspend_until" size="10" {% if user.suspend_until %} value="{{ user.suspend_until }}" {% endif %} />
+            <input class="datepicker" type="text" class="vDateField" name="suspend_from" size="10" {% if user.suspend_from %} value="{{ user.suspend_from }}" {% endif %} />
+            <input class="datepicker" type="text" class="vDateField" name="suspend_until" size="10" {% if user.suspend_until %} value="{{ user.suspend_until }}" {% endif %} />
             <input type="submit" value="Set" />
         </h1>
     </form>
 {% endfor %}
+
+</body>
+</html>
