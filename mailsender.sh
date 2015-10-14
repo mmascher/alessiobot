@@ -1,6 +1,10 @@
 #!/bin/bash
+set -x
 pushd /data/alessiobot
 export DJANGO_SETTINGS_MODULE=alessiobot.settings
+
+#reset today's presence
+python resetpresence.py
 
 #get the "parabla del dia"
 PALABRA=""
