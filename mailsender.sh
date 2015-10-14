@@ -14,13 +14,7 @@ while [ "X$PALABRA" == X -o $TRANSLATE == $PALABRA ]; do
  TRANSLATE=$(curl -s -i --user-agent "" -d "sl=es" -d "tl=it" --data-urlencode "text=$PALABRA" https://translate.google.com | iconv -f ISO-8859-1 |  awk 'BEGIN {RS="</div>"};/<span[^>]* id=["'\'']?result_box["'\'']?/' | html2text -utf8)
 done
 
-#get the fortune
-FORT_LINES=31
-while [ $FORT_LINES -gt 30 ]
-do
-    FORT=$(fortune)
-    FORT_LINES=$(echo $FORT | wc -w)
-done
+FORT=$(fortune ~/.fortunes/ -a -s -n 600)
 
 #send the email
 rm -rf mail_template
@@ -29,10 +23,11 @@ GIORNO=$(curl -s -i --user-agent "" -d "sl=es" -d "tl=it" --data-urlencode "text
 echo -e "subject: Pranzo "$GIORNO" "`date +"%d/%m/%Y"` >> mail_template
 echo -e "from: organizzatoribot@gmail.com" >> mail_template
 python getemails.py >> mail_template
+#echo -e "To: xxx@gmail.com" >> mail_template
 echo -e "Hola chicos! Chi si presenta oggi?" >> mail_template
 echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template
-echo -e "\nProverbio del giorno\n$FORT" >> mail_template
+echo -e "\nProverbio del giorno:\n$FORT" >> mail_template
 echo -e "\nMessaggio editato da AlessioBot, l'emulatore più fedele di OrganizzaTori(tm)" >> mail_template
 
 cat mail_template | /usr/sbin/sendmail -t
