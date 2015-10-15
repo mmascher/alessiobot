@@ -1,5 +1,6 @@
 #!/bin/bash
 set -x
+date
 pushd /data/alessiobot
 export DJANGO_SETTINGS_MODULE=alessiobot.settings
 
@@ -14,7 +15,7 @@ while [ "X$PALABRA" == X -o $TRANSLATE == $PALABRA ]; do
  TRANSLATE=$(curl -s -i --user-agent "" -d "sl=es" -d "tl=it" --data-urlencode "text=$PALABRA" https://translate.google.com | iconv -f ISO-8859-1 |  awk 'BEGIN {RS="</div>"};/<span[^>]* id=["'\'']?result_box["'\'']?/' | html2text -utf8)
 done
 
-FORT=$(fortune ~/.fortunes/ -a -s -n 600)
+FORT=$(fortune /data/fortunes/ -a -s -n 600)
 
 #send the email
 rm -rf mail_template
@@ -29,6 +30,7 @@ echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template
 echo -e "\nProverbio del giorno:\n$FORT" >> mail_template
 echo -e "\nMessaggio editato da AlessioBot, l'emulatore più fedele di OrganizzaTori(tm)" >> mail_template
+echo -e "\nhttp://mmascher-web.cern.ch/webalessio/" >> mail_template
 
 cat mail_template | /usr/sbin/sendmail -t
 popd
