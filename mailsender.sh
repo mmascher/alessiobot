@@ -30,7 +30,9 @@ echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template
 echo -e "\nProverbio del giorno:\n$FORT" >> mail_template
 echo -e "\nMessaggio editato da AlessioBot, l'emulatore più fedele di OrganizzaTori(tm)" >> mail_template
-echo -e "\nhttp://mmascher-web.cern.ch/webalessio/" >> mail_template
+echo -e "\nhttp://alessiobot.dynu.com/webalessio/" >> mail_template
+echo -e "http://mmascher-web.cern.ch/webalessio/ (solo dal CERN)" >> mail_template
+echo -e "https://github.com/mmascher/alessiobot" >> mail_template
 
 cat mail_template | /usr/sbin/sendmail -t
 popd

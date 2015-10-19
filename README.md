@@ -35,4 +35,4 @@ for user_email in users:
 map(User.delete, User.objects.all())
 ```
 
-N.B.: The above isntructions only work if you export the `DJANGO_SETTINGS_MODULE=alessiobot.settings` environment variable.
+N.B.: The above instructions only work if you export the `DJANGO_SETTINGS_MODULE=alessiobot.settings` environment variable.
