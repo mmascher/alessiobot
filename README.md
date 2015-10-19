@@ -34,3 +34,5 @@ for user_email in users:
 #and this is to clean it:
 map(User.delete, User.objects.all())
 ```
+
+N.B.: The above isntructions only work if you export the `DJANGO_SETTINGS_MODULE=alessiobot.settings` environment variable.
