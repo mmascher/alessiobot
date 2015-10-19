@@ -14,7 +14,7 @@ You might want to google "django tutorial"
 Fortunes in italian courtesy of http://www.fortune-it.net/main.html
 
 #Crontab to run the sendmail script
-`37 6 * * 1-5 degano sh -ex /data/alessiobot/mailsender.sh > /data/out 2> /data/err`
+`37 6 * * 1-5 sh -ex /data/alessiobot/mailsender.sh > /data/out 2> /data/err`
 
 #Some commands for updating the db and running the server:
 ```python
