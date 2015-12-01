@@ -16,6 +16,7 @@ while [ "X$PALABRA" == X -o $TRANSLATE == $PALABRA ]; do
 done
 
 FORT=$(fortune /data/fortunes/ -a -s -n 600)
+SALVINI=$(python salvini.py)
 
 #send the email
 rm -rf mail_template
@@ -29,6 +30,7 @@ echo -e "Hola chicos! Chi si presenta oggi?" >> mail_template
 echo -e "12.45 @R2!" >> mail_template
 echo -e "\n\nPalabra del dia: "${PALABRA}" -> "${TRANSLATE} >> mail_template
 echo -e "\nProverbio del giorno:\n$FORT" >> mail_template
+echo -e "\nOggi Salvini dice:\n$SALVINI\n" >> mail_template
 echo -e "\nMessaggio editato da AlessioBot, l'emulatore più fedele di OrganizzaTori(tm)" >> mail_template
 echo -e "\nhttp://alessiobot.dynu.com/webalessio/" >> mail_template
 echo -e "http://mmascher-web.cern.ch/webalessio/ (solo dal CERN)" >> mail_template
